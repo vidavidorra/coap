@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "config:base",
+    ":masterIssue",
+    ":pinDependencies",
+    ":timezone(Europe/Amsterdam)",
+    "schedule:monthly"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "masterIssueApproval": true
+  },
+  "major": {
+    "stabilityDays": 3
+  },
+  "packageRules": [
+    {
+      "depTypeList": ["dependencies"],
+      "schedule": ["at any time"]
+    }
+  ],
+  "prCreation": "not-pending"
+}
