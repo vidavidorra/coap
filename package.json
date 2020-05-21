@@ -1,7 +1,7 @@
 {
-  "name": "repo-template",
-  "version": "1.0.8",
-  "description": "A template for creating new repositories.",
+  "name": "coap",
+  "version": "0.1.0",
+  "description": "C++ CoAP library (RFC 7252).",
   "private": true,
   "scripts": {
     "lint": "concurrently npm:lint-es",
@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vidavidorra/repo-template.git"
+    "url": "git+https://github.com/vidavidorra/coap.git"
   },
   "author": "Jeroen de Bruijn",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/vidavidorra/repo-template/issues"
+    "url": "https://github.com/vidavidorra/coap/issues"
   },
-  "homepage": "https://github.com/vidavidorra/repo-template#readme",
+  "homepage": "https://github.com/vidavidorra/coap#readme",
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
