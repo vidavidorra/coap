@@ -1,0 +1,33 @@
+# See http://clang.llvm.org/docs/ClangFormatStyleOptions.html for the available
+# options.
+---
+Language: Cpp
+
+# Use the Google style.
+# Google C++ Style Guide: https://google.github.io/styleguide/cppguide.html
+BasedOnStyle: Google
+
+# Some folks prefer to write "int& foo" while others prefer "int &foo". The
+# Google style only asks for consistency within a project. Use the "int& foo"
+# style.
+DerivePointerAlignment: false
+PointerAlignment: Left
+
+# Names and order of includes with the following order.
+# 1. Related header. Note that this is automatically the first include and is
+#    not in the IncludeCategories.
+# 2. C system headers (more precisely: headers in angle brackets with the .h
+#    extension), e.g. <unistd.h>, <stdlib.h>.
+# 3. C++ standard library headers (without file extension), e.g. <algorithm>,
+#    <cstddef>.
+# 4. Other libraries and project .h files.
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '<[[:alnum:].]+\.h>'
+    Priority: 2
+  - Regex: '<[[:alnum:].]+>'
+    Priority: 3
+  - Regex: '^\".*'
+    Priority: 4
+
+...
