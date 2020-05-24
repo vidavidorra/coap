@@ -34,15 +34,10 @@ class Code {
     // Trailing underscore because `class` is a reserved word.
     Class class_ : 3;
   };
-  ////////////////////////
+
   /**
    * Codes as described in RFC 7252 §12.1.
    * - https://tools.ietf.org/html/rfc7252#section-12.1
-   *
-   * Contains t
-   * - Empty message code (RFC 7252 §12.1)
-   * - CoAP Method Codes sub-registry (RFC 7252 §12.1.2)
-   * - CoAP Response Codes sub-registry (RFC 7252 §12.1.2)
    */
   enum class Value : Type {
     k000 = 0x00,  // Empty message.
