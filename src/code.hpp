@@ -104,7 +104,7 @@ class Code {
     Parts parts;
   };
 
-  ValueFields const _kCode;
+  ValueFields const _kValue;
 };
 
 }  // namespace coap
