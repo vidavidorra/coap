@@ -2,7 +2,6 @@
 
 #include <limits>
 #include <string>
-#include <vector>
 
 #include "catch2/catch.hpp"
 #include "test-data.hpp"

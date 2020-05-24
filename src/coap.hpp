@@ -1,5 +1,10 @@
 #pragma once
 
+#include <cstdint>
+
+#include "code.hpp"
+#include "type.hpp"
+
 namespace coap {
 
 /**
@@ -19,7 +24,9 @@ class Coap {
   /**
    * - Constructor from data, i.e. a byte vector.
    */
-  Coap();
+  Coap(std::uint8_t data);
+
+  Coap(std::uint8_t data, Type type, Code code, std::uint8_t message_id);
 
   Coap& token();
   Coap& option();
