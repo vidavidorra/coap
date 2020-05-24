@@ -2,31 +2,36 @@
 
 namespace coap {
 
-Code::Code(Type value) : _kCode({.value = value}) {}
+Code::Code(Type value) noexcept : _kCode({.value = value}) {}
 
-Code::Code(Value value) : _kCode({.value = static_cast<Type>(value)}) {}
+Code::Code(Value value) noexcept
+    : _kCode({.value = static_cast<Type>(value)}) {}
 
-Code::Code(Parts value) : _kCode({.parts = value}) {}
+Code::Code(Parts value) noexcept : _kCode({.parts = value}) {}
 
-Code::operator Type() const { return _kCode.value; }
+Code::operator Type() const noexcept { return _kCode.value; }
 
-Code::operator Value() const { return static_cast<Value>(_kCode.value); }
+Code::operator Value() const noexcept {
+  return static_cast<Value>(_kCode.value);
+}
 
-Code::operator Parts() const { return _kCode.parts; }
+Code::operator Parts() const noexcept { return _kCode.parts; }
 
-bool Code::IsRequest() const { return _kCode.parts.class_ == Class::kRequest; }
+bool Code::IsRequest() const noexcept {
+  return _kCode.parts.class_ == Class::kRequest;
+}
 
-bool Code::IsResponse() const { return !IsRequest(); }
+bool Code::IsResponse() const noexcept { return !IsRequest(); }
 
-bool Code::IsSuccess() const {
+bool Code::IsSuccess() const noexcept {
   return _kCode.parts.class_ == Class::kResponseSuccess;
 }
 
-bool Code::IsClientError() const {
+bool Code::IsClientError() const noexcept {
   return _kCode.parts.class_ == Class::kResponseClientError;
 }
 
-bool Code::IsServerError() const {
+bool Code::IsServerError() const noexcept {
   return _kCode.parts.class_ == Class::kResponseServerError;
 }
 

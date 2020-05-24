@@ -75,27 +75,27 @@ class Code {
     k505 = 0xa5,  // Response: Proxying Not Supported.
   };
 
-  Code(Type value);
+  Code(Type value) noexcept;
 
-  Code(Value value);
+  Code(Value value) noexcept;
 
-  Code(Parts value);
+  Code(Parts value) noexcept;
 
-  operator Type() const;
+  operator Type() const noexcept;
 
-  operator Value() const;
+  operator Value() const noexcept;
 
-  operator Parts() const;
+  operator Parts() const noexcept;
 
-  bool IsRequest() const;
+  bool IsRequest() const noexcept;
 
-  bool IsResponse() const;
+  bool IsResponse() const noexcept;
 
-  bool IsSuccess() const;
+  bool IsSuccess() const noexcept;
 
-  bool IsClientError() const;
+  bool IsClientError() const noexcept;
 
-  bool IsServerError() const;
+  bool IsServerError() const noexcept;
 
  private:
   // RFC 7252 §5.2, Figure 9.
