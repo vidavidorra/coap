@@ -24,21 +24,21 @@ class Type {
     kReset,
   };
 
-  Type(DataType value);
+  Type(DataType value) noexcept;
 
-  Type(Value value);
+  Type(Value value) noexcept;
 
-  operator DataType() const;
+  operator DataType() const noexcept;
 
-  operator Value() const;
+  operator Value() const noexcept;
 
-  bool IsConfirmable() const;
+  bool IsConfirmable() const noexcept;
 
-  bool IsNonConfirmable() const;
+  bool IsNonConfirmable() const noexcept;
 
-  bool IsAcknowledgement() const;
+  bool IsAcknowledgement() const noexcept;
 
-  bool IsReset() const;
+  bool IsReset() const noexcept;
 
  private:
   DataType const _kValueBitMask;
