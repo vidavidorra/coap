@@ -75,11 +75,11 @@ class Code {
     k505 = 0xa5,  // Response: Proxying Not Supported.
   };
 
-  Code(Type code);
+  Code(Type value);
 
-  Code(Value code);
+  Code(Value value);
 
-  Code(Parts parts);
+  Code(Parts value);
 
   operator Type() const;
 

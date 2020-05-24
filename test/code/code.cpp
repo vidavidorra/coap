@@ -2,7 +2,6 @@
 
 #include <limits>
 #include <string>
-#include <vector>
 
 #include "catch2/catch.hpp"
 #include "test-data.hpp"
@@ -16,14 +15,14 @@ std::string const kTags("[code]");
 using Code = coap::Code;
 
 TEST_CASE(kTestGroup + "correctly parses code", kTags) {
-  SECTION("from type") {
+  SECTION("from Type") {
     for (auto const& e : kTestValues) {
       const Code kCode(e.code.type);
       REQUIRE(static_cast<Code::Type>(kCode) == e.code.type);
     }
   }
 
-  SECTION("from code") {
+  SECTION("from Value") {
     for (auto const& e : kTestValues) {
       for (auto const& value : e.code.values) {
         const Code kCode(value);
@@ -32,7 +31,7 @@ TEST_CASE(kTestGroup + "correctly parses code", kTags) {
     }
   }
 
-  SECTION("from parts") {
+  SECTION("from Parts") {
     for (auto const& e : kTestValues) {
       const Code kCode(e.code.parts);
       REQUIRE(static_cast<Code::Type>(kCode) == e.code.type);
@@ -100,28 +99,31 @@ TEST_CASE(kTestGroup + "assigns correct detail", kTags) {
   }
 }
 
-TEST_CASE(kTestGroup + "IsRequest returns correctly", kTags) {
+TEST_CASE(kTestGroup + "IsRequest() returns correctly", kTags) {
   for (auto const& e : kTestValues) {
     REQUIRE(Code(e.code.type).IsRequest() == e.properties.is_request);
   }
 }
 
-TEST_CASE(kTestGroup + "IsResponse returns correctly", kTags) {
+TEST_CASE(kTestGroup + "IsResponse() returns correctly", kTags) {
   for (auto const& e : kTestValues) {
     REQUIRE(Code(e.code.type).IsResponse() == e.properties.is_response);
   }
 }
-TEST_CASE(kTestGroup + "IsSuccess returns correctly", kTags) {
+
+TEST_CASE(kTestGroup + "IsSuccess() returns correctly", kTags) {
   for (auto const& e : kTestValues) {
     REQUIRE(Code(e.code.type).IsSuccess() == e.properties.is_success);
   }
 }
-TEST_CASE(kTestGroup + "IsClientError returns correctly", kTags) {
+
+TEST_CASE(kTestGroup + "IsClientError() returns correctly", kTags) {
   for (auto const& e : kTestValues) {
     REQUIRE(Code(e.code.type).IsClientError() == e.properties.is_client_error);
   }
 }
-TEST_CASE(kTestGroup + "IsServerError returns correctly", kTags) {
+
+TEST_CASE(kTestGroup + "IsServerError() returns correctly", kTags) {
   for (auto const& e : kTestValues) {
     REQUIRE(Code(e.code.type).IsServerError() == e.properties.is_server_error);
   }

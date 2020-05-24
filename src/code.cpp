@@ -2,11 +2,11 @@
 
 namespace coap {
 
-Code::Code(Type code) : _kCode({.value = code}) {}
+Code::Code(Type value) : _kCode({.value = value}) {}
 
-Code::Code(Value code) : _kCode({.value = static_cast<Type>(code)}) {}
+Code::Code(Value value) : _kCode({.value = static_cast<Type>(value)}) {}
 
-Code::Code(Parts parts) : _kCode({.parts = parts}) {}
+Code::Code(Parts value) : _kCode({.parts = value}) {}
 
 Code::operator Type() const { return _kCode.value; }
 

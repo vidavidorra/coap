@@ -1,8 +1,10 @@
+#include <vector>
+
 #include "code.hpp"
 
 namespace coap::test {
 
-using TestValue = struct TestValue {
+using TestValue = struct {
   struct {
     Code::Type type;
     std::vector<Code::Value> values;
