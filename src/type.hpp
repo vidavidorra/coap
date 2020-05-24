@@ -5,7 +5,7 @@
 namespace coap {
 
 /**
- * Implements CoAP message type as described in RFC 7252 §3.
+ * Implements CoAP type as described in RFC 7252 §3.
  * https://tools.ietf.org/html/rfc7252#section-3
  */
 class Type {

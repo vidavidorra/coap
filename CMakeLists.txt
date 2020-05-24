@@ -77,12 +77,14 @@ else()
   list(APPEND _dut_header_files
     coap.hpp
     code.hpp
+    header.hpp
     type.hpp
   )
 
   list(APPEND _dut_source_files
     coap.cpp
     code.cpp
+    header.cpp
     type.cpp
   )
 
@@ -107,6 +109,7 @@ else()
     code/test-data.hpp
     type/test-data.hpp
     type/type.cpp
+    header/header.cpp
     coap.cpp
     runner.cpp
   )

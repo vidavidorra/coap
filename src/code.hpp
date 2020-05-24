@@ -5,7 +5,7 @@
 namespace coap {
 
 /**
- * Implements CoAP message codes as described in RFC 7252 §5 and §12.1.
+ * Implements CoAP code as described in RFC 7252 §5 and §12.1.
  * - https://tools.ietf.org/html/rfc7252#section-5
  * - https://tools.ietf.org/html/rfc7252#section-12.1
  */
