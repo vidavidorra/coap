@@ -25,6 +25,15 @@ class Header {
   /**
    * Header construction as described in RFC 7252 §3, Figure 7.
    * - https://tools.ietf.org/html/rfc7252#section-3
+   *
+   * This structure can be represented by 32-bits, where the rightmost byte
+   * represents a part of the message ID and the leftmost byte represents o.a.
+   * the version. The fields, and which bits they're represented by, are shown
+   * in the table below.
+   *
+   * | bits  | 32:30   | 30:28 | 28:24        | 24:16 | 16:0       |
+   * | ----- | ------- | ----- | ------------ | ----- | ---------- |
+   * | field | version | type  | token length | code  | message ID |
    */
   using Value = struct {
     MessageIdType message_id;
@@ -59,6 +68,11 @@ class Header {
   bool IsValid() const noexcept;
 
  private:
+  /**
+   * In this representation of the values, the first field of the array needs to
+   * be the leftmost byte. The first field of an array becomes the rightmost
+   * byte, so the order needs to be reversed in order to represent the value.
+   */
   union ValueFields {
     Type fields;
     Value value;

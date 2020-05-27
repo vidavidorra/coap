@@ -1,5 +1,7 @@
 #include "header.hpp"
 
+#include <algorithm>
+
 namespace coap {
 
 /**
@@ -10,6 +12,7 @@ namespace coap {
 Header::Header(Type value) noexcept
     : _kTokenLengthBitMask(0x0f), _kTokenLengthMax(8) {
   _value.fields = value;
+  std::reverse(_value.fields.begin(), _value.fields.end());
 }
 
 Header::Header(coap::Type::Value type, coap::Code::Value code,
@@ -22,7 +25,11 @@ Header::Header(coap::Type::Value type, coap::Code::Value code,
   _value.value.message_id = message_id;
 }
 
-Header::operator Type() const noexcept { return _value.fields; }
+Header::operator Type() const noexcept {
+  auto value = _value.fields;
+  std::reverse(value.begin(), value.end());
+  return value;
+}
 
 Header::operator Value() const noexcept { return _value.value; }
 
