@@ -1,7 +1,11 @@
-class Code {
-  constructor(public code: number) {}
+import Field from './field';
 
-  HumanReadable(): string {
+class Code extends Field {
+  constructor(public value: number) {
+    super(2);
+  }
+
+  humanReadable(): string {
     /**
      * RFC 7252 §5.2: As a human-readable notation for specifications and
      * protocol diagnostics, CoAP code numbers including the response Code are
@@ -12,8 +16,8 @@ class Code {
      * - https://tools.ietf.org/html/rfc7252#section-5.2
      */
 
-    const codeClass = Math.floor(this.code / 0x20);
-    const codeDetail = this.code - codeClass * 0x20;
+    const codeClass = Math.floor(this.value / 0x20);
+    const codeDetail = this.value - codeClass * 0x20;
 
     return `${codeClass}.${codeDetail.toString(10).padStart(2, '0')}`;
   }

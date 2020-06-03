@@ -9,6 +9,6 @@
     "allowSyntheticDefaultImports": true,
     "outDir": "dist"
   },
-  "include": ["command/**/*.ts"],
+  "include": ["scripts/**/*.ts"],
   "exclude": ["node_modules", "**/*.test.ts"]
 }

@@ -13,6 +13,12 @@ Header::Header(Type value) noexcept
     : _kTokenLengthBitMask(0x0f), _kTokenLengthMax(8) {
   _value.fields = value;
   std::reverse(_value.fields.begin(), _value.fields.end());
+
+  printf("Header : ");
+  for (auto const& x : _value.fields) {
+    printf("0x%02hhx, ", x);
+  }
+  printf("\n");
 }
 
 Header::Header(coap::Type::Value type, coap::Code::Value code,
