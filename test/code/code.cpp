@@ -56,8 +56,10 @@ TEST_CASE(kTestGroup + "operator Value() returns correctly", kTags) {
 TEST_CASE(kTestGroup + "operator Parts() returns correctly", kTags) {
   for (auto const& e : kTestValues) {
     const Code kCode(e.code.type);
-    REQUIRE(static_cast<Code::Parts>(kCode).class_ == e.code.parts.class_);
-    REQUIRE(static_cast<Code::Parts>(kCode).detail == e.code.parts.detail);
+
+    const Code::Parts kParts = kCode;
+    REQUIRE(kParts.class_ == e.code.parts.class_);
+    REQUIRE(kParts.detail == e.code.parts.detail);
   }
 }
 
@@ -83,20 +85,6 @@ TEST_CASE(kTestGroup + "correctly parses all codes", kTags) {
     REQUIRE(static_cast<Code::Type>(kParts.class_) == kClass);
     REQUIRE(kParts.detail == kDetail);
   } while (code++ != std::numeric_limits<Code::Type>::max());
-}
-
-TEST_CASE(kTestGroup + "assigns correct class", kTags) {
-  for (auto const& e : kTestValues) {
-    const Code kCode(e.code.type);
-    REQUIRE(static_cast<Code::Parts>(kCode).class_ == e.code.parts.class_);
-  }
-}
-
-TEST_CASE(kTestGroup + "assigns correct detail", kTags) {
-  for (auto const& e : kTestValues) {
-    const Code kCode(e.code.type);
-    REQUIRE(static_cast<Code::Parts>(kCode).detail == e.code.parts.detail);
-  }
 }
 
 TEST_CASE(kTestGroup + "IsRequest() returns correctly", kTags) {
