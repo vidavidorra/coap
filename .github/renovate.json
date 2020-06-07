@@ -3,9 +3,9 @@
     "config:base",
     ":masterIssue",
     ":pinDependencies",
-    ":timezone(Europe/Amsterdam)",
-    "schedule:monthly"
+    ":timezone(Europe/Amsterdam)"
   ],
+  "ignorePresets": [":prHourlyLimit2"],
   "lockFileMaintenance": {
     "enabled": true,
     "masterIssueApproval": true
@@ -19,5 +19,6 @@
       "schedule": ["at any time"]
     }
   ],
-  "prCreation": "not-pending"
+  "prCreation": "not-pending",
+  "schedule": ["on the first day of the month"]
 }
