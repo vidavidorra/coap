@@ -55,7 +55,7 @@ class Header {
     });
     header.push('}');
 
-    return header.join(' ');
+    return header.join('');
   }
 }
 

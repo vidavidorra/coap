@@ -1,8 +1,22 @@
 import Field from './field';
 
+interface Value {
+  name: string;
+}
+
 class Code extends Field {
-  constructor(public value: number) {
-    super(2);
+  private readonly valueType = 'Code::Value';
+  private readonly codes = new Map([
+    [0, { name: 'k000' }],
+    [1, { name: 'k001' }],
+    [2, { name: 'k002' }],
+    [3, { name: 'k003' }],
+    [4, { name: 'k004' }],
+  ]);
+
+  constructor(value: number) {
+    super(8);
+    this.value = value;
   }
 
   humanReadable(): string {
@@ -20,6 +34,19 @@ class Code extends Field {
     const codeDetail = this.value - codeClass * 0x20;
 
     return `${codeClass}.${codeDetail.toString(10).padStart(2, '0')}`;
+  }
+
+  get(): Value | undefined {
+    return this.codes.get(this.value);
+  }
+
+  toString(): string {
+    const value = this.get();
+    if (value) {
+      return `${this.valueType}::${value.name}`;
+    }
+
+    return `static_cast<${this.valueType}>(${this.value})`;
   }
 }
 

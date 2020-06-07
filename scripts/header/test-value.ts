@@ -28,32 +28,20 @@ class TestValue {
       `{.type = ${this.header.byteString()},`,
       '.value = {',
       `.message_id = ${this.header.messageId.value},`,
-      `.code = static_cast<Code::Value>(${this.header.code.value}),`,
+      `.code = ${this.header.code.toString()},`,
       `.token_length = ${this.header.tokenLength.value},`,
       `.type = ${this.header.type.toString()},`,
       `.version = ${this.header.version.value},`,
       '}},',
       '.properties = {',
-      `${this.properties.versionIsValid},`,
-      `${this.properties.containsFormatError},`,
-      `${this.properties.isValid},`,
-      '}},',
+      `.version_is_valid = ${this.properties.versionIsValid},`,
+      `.contains_format_error = ${this.properties.containsFormatError},`,
+      `.is_valid = ${this.properties.isValid},`,
+      '},',
+      '},',
     ].join(' ');
   }
 }
 
 export default TestValue;
 export { Properties };
-
-/*
-TestValue{.header = {.type = {0x40, 0x30, 0x20, 0x10},
-                      .value =
-                          {
-                              .message_id = 0,
-                              .code = Code::Value::kEmpty,
-                              .token_length = 0,
-                              .type = Type::Value::kConfirmable,
-                              .version = 1,
-                          }},
-          .properties = {true, false, true}},
-*/

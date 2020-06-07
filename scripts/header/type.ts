@@ -48,8 +48,6 @@ class Type extends Field {
     ],
   ]);
 
-  readonly typeValue: Value;
-
   constructor(value: number) {
     super(2);
     this.value = value;

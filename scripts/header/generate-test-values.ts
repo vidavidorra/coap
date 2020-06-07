@@ -3,10 +3,8 @@ import TestValue from './test-value';
 import chalk from 'chalk';
 
 class GenerateTestValues {
-  private readonly outerValueCount = 1;
+  private readonly outerValueCount = 2;
   private testValues: TestValue[] = [];
-
-  // constructor() {}
 
   createValues(): void {
     const header = new Header(0, 0, 0, 0, 0);
@@ -59,7 +57,6 @@ class GenerateTestValues {
 
     //
     this.testValues.forEach((e) => {
-      //
       console.log(e.toString());
     });
   }

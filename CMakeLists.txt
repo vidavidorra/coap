@@ -170,7 +170,7 @@ else()
 
   target_compile_options(${PROJECT_NAME}
     PRIVATE
-      # -Werror
+      -Werror
       -Wall
   )
 

@@ -15,13 +15,9 @@ namespace coap {
 class Header {
  public:
   using Type = std::array<std::uint8_t, 4>;
-
   using VersionType = std::uint8_t;
-
   using TokenLengthType = std::uint8_t;
-
   using MessageIdType = std::uint16_t;
-
   /**
    * Header construction as described in RFC 7252 §3, Figure 7.
    * - https://tools.ietf.org/html/rfc7252#section-3
@@ -43,6 +39,8 @@ class Header {
     VersionType version : 2;
   };
 
+  const TokenLengthType kMaximumTokenLength;
+
   Header(Type value) noexcept;
 
   Header(coap::Type::Value type, coap::Code::Value code,
@@ -53,9 +51,8 @@ class Header {
   operator Value() const noexcept;
 
   /**
-   * The token length is represented by four bits. For values larger than those
-   * that can be represented by four bits, so zero up to and including fifteen,
-   * the other bits are ignored.
+   * The token length is represented by four bits. Therefore, values of nine or
+   * larger are ignored and are marked as an invalid input.
    *
    * @return true if the token length was valid, false otherwise.
    */
