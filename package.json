@@ -21,7 +21,7 @@
     "release:message": "chalk -t \"Run {green.bold git push} to publish the release or {red.bold git reset HEAD^} to undo the release.\"",
     "release": "run-s release:changelog release:commit release:message",
     "build-ts": "tsc",
-    "generate-header-data": "node_modules/.bin/ts-node scripts/header/generate-test-values"
+    "generate-test-data:header": "node_modules/.bin/ts-node scripts/header/generate-test-data"
   },
   "repository": {
     "type": "git",

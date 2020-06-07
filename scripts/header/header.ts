@@ -1,9 +1,8 @@
-import Code from './code';
-import Field from './field';
-import Type from './type';
+import { Code, Field, Type } from '..';
 import packet from 'coap-packet';
 
 class Header {
+  // See the C++ header class for documentation on the header construction.
   readonly byteCount = 4;
   version = new Field(2);
   type: Type;
@@ -45,17 +44,17 @@ class Header {
       buffer.writeInt16BE(0, 2);
     }
 
-    const header = ['{'];
-    buffer.slice(0, this.byteCount).forEach((byte, index) => {
-      let value = `0x${byte.toString(16).padStart(2, '0')}`;
-      if (index < this.byteCount - 1) {
-        value += ',';
-      }
-      header.push(value);
-    });
-    header.push('}');
+    return `{${this.bufferToHex(buffer)}}`;
+  }
 
-    return header.join('');
+  bufferToHex(buffer: Buffer): string {
+    const prefix = '0x';
+    return [
+      prefix,
+      [...new Uint8Array(buffer.slice(0, this.byteCount))]
+        .map((e) => e.toString(16).padStart(2, '0'))
+        .join(`, ${prefix}`),
+    ].join('');
   }
 }
 

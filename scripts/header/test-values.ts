@@ -1,12 +1,25 @@
 import Header from './header';
 import TestValue from './test-value';
-import chalk from 'chalk';
 
-class GenerateTestValues {
+function numericSort(a: number, b: number): number {
+  return a - b;
+}
+
+class TestValues {
   private readonly outerValueCount = 2;
-  private testValues: TestValue[] = [];
+  private values: TestValue[] = [];
 
-  createValues(): void {
+  generate(): number {
+    this.generateValues();
+
+    this.values.forEach((e) => {
+      console.log(e.toString());
+    });
+
+    return this.values.length;
+  }
+
+  private generateValues(): void {
     const header = new Header(0, 0, 0, 0, 0);
     const versions = [1];
     const types = [];
@@ -25,11 +38,11 @@ class GenerateTestValues {
       messageIds.push(header.messageId.maximumValue() - i);
     }
 
-    versions.sort((a, b) => a - b);
-    types.sort((a, b) => a - b);
-    tokenLengths.sort((a, b) => a - b);
-    codes.sort((a, b) => a - b);
-    messageIds.sort((a, b) => a - b);
+    versions.sort(numericSort);
+    types.sort(numericSort);
+    tokenLengths.sort(numericSort);
+    codes.sort(numericSort);
+    messageIds.sort(numericSort);
 
     versions.forEach((version) => {
       types.forEach((type) => {
@@ -48,21 +61,13 @@ class GenerateTestValues {
                 testValue.properties.containsFormatError = false;
               }
               testValue.properties.isValid = true;
-              this.testValues.push(testValue);
+              this.values.push(testValue);
             });
           });
         });
       });
     });
-
-    //
-    this.testValues.forEach((e) => {
-      console.log(e.toString());
-    });
   }
 }
 
-const gtv = new GenerateTestValues();
-gtv.createValues();
-
-console.log(chalk.green(`Generated ${1} test elements!`));
+export default TestValues;
