@@ -4,9 +4,13 @@ namespace coap {
 
 Coap::Coap(std::uint8_t data) {}
 
-Coap::Coap(std::uint8_t data, Type type, Code code, std::uint8_t message_id) {}
+Coap::Coap(std::uint8_t data, Header header) {}
 
-Coap& Coap::token() { return *this; }
+Coap& Coap::token() {
+  // set Header TokenLength
+  return *this;
+}
+
 Coap& Coap::option() { return *this; }
 Coap& Coap::payload() { return *this; }
 

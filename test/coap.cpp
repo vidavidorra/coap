@@ -14,8 +14,8 @@ TEST_CASE(kTestGroup + "correctly parses code", kTags) {
   Coap coap(20);
   coap.option().payload().token();
 
-  Coap coap2(20, coap::Type(coap::Type::Value::kConfirmable),
-             coap::Code(coap::Code::Value::kPost), 123);
+  Coap coap2(20, coap::Header(coap::Type::Value::kConfirmable,
+                              coap::Code::Value::kPost, 123));
   coap2.option().payload().token();
 }
 

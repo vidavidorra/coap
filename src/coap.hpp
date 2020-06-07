@@ -2,8 +2,7 @@
 
 #include <cstdint>
 
-#include "code.hpp"
-#include "type.hpp"
+#include "header.hpp"
 
 namespace coap {
 
@@ -26,7 +25,7 @@ class Coap {
    */
   Coap(std::uint8_t data);
 
-  Coap(std::uint8_t data, Type type, Code code, std::uint8_t message_id);
+  Coap(std::uint8_t data, Header header);
 
   Coap& token();
   Coap& option();
