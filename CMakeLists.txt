@@ -110,6 +110,7 @@ else()
     type/test-data.hpp
     type/type.cpp
     header/header.cpp
+    header/test-data.hpp
     coap.cpp
     runner.cpp
   )
@@ -169,8 +170,8 @@ else()
 
   target_compile_options(${PROJECT_NAME}
     PRIVATE
-      # -Werror
-      # -Wall
+      -Werror
+      -Wall
   )
 
 endif()

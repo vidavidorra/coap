@@ -10,14 +10,14 @@ namespace coap {
  * - https://tools.ietf.org/html/rfc7252#section-3
  */
 Header::Header(Type value) noexcept
-    : _kTokenLengthBitMask(0x0f), _kTokenLengthMax(8) {
+    : kMaximumTokenLength(8), _kTokenLengthBitMask(0x0f), _kTokenLengthMax(8) {
   _value.fields = value;
   std::reverse(_value.fields.begin(), _value.fields.end());
 }
 
 Header::Header(coap::Type::Value type, coap::Code::Value code,
                MessageIdType message_id) noexcept
-    : _kTokenLengthBitMask(0x0f), _kTokenLengthMax(8) {
+    : kMaximumTokenLength(8), _kTokenLengthBitMask(0x0f), _kTokenLengthMax(8) {
   SetDefaults();
 
   _value.value.type = type;
@@ -36,6 +36,7 @@ Header::operator Value() const noexcept { return _value.value; }
 bool Header::TokenLength(TokenLengthType token_length) noexcept {
   if (token_length <= _kTokenLengthMax) {
     _value.value.token_length = token_length & _kTokenLengthBitMask;
+    return true;
   }
 
   return false;
