@@ -14,7 +14,7 @@ std::string const kTags("[type]");
 // DUT (device under test).
 using Type = coap::Type;
 
-TEST_CASE(kTestGroup + "correctly parses code", kTags) {
+TEST_CASE(kTestGroup + "correctly parses type", kTags) {
   SECTION("from DataType") {
     for (auto const& e : kTestValues) {
       const Type kType(e.type.data);
