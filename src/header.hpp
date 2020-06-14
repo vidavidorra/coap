@@ -4,6 +4,7 @@
 #include <cstdint>
 
 #include "code.hpp"
+#include "token.hpp"
 #include "type.hpp"
 
 namespace coap {
@@ -16,8 +17,8 @@ class Header {
  public:
   using Type = std::array<std::uint8_t, 4>;
   using VersionType = std::uint8_t;
-  using TokenLengthType = std::uint8_t;
   using MessageIdType = std::uint16_t;
+
   /**
    * Header construction as described in RFC 7252 §3, Figure 7.
    * - https://tools.ietf.org/html/rfc7252#section-3
@@ -34,12 +35,10 @@ class Header {
   using Value = struct {
     MessageIdType message_id;
     coap::Code::Value code;
-    TokenLengthType token_length : 4;
+    coap::Token::Length token_length : 4;
     coap::Type::Value type : 2;
     VersionType version : 2;
   };
-
-  const TokenLengthType kMaximumTokenLength;
 
   Header(Type value) noexcept;
 
@@ -56,7 +55,7 @@ class Header {
    *
    * @return true if the token length was valid, false otherwise.
    */
-  bool TokenLength(TokenLengthType token_length) noexcept;
+  bool TokenLength(coap::Token::Length token_length) noexcept;
 
   bool VersionIsValid() const noexcept;
 
@@ -77,8 +76,7 @@ class Header {
 
   void SetDefaults() noexcept;
 
-  TokenLengthType const _kTokenLengthBitMask;
-  TokenLengthType const _kTokenLengthMax;
+  coap::Token::Length const _kMaximumTokenLength;
   ValueFields _value;
 };
 

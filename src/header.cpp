@@ -10,14 +10,14 @@ namespace coap {
  * - https://tools.ietf.org/html/rfc7252#section-3
  */
 Header::Header(Type value) noexcept
-    : kMaximumTokenLength(8), _kTokenLengthBitMask(0x0f), _kTokenLengthMax(8) {
+    : _kMaximumTokenLength(coap::Token::kMaximumLength), _value() {
   _value.fields = value;
   std::reverse(_value.fields.begin(), _value.fields.end());
 }
 
 Header::Header(coap::Type::Value type, coap::Code::Value code,
                MessageIdType message_id) noexcept
-    : kMaximumTokenLength(8), _kTokenLengthBitMask(0x0f), _kTokenLengthMax(8) {
+    : _kMaximumTokenLength(coap::Token::kMaximumLength) {
   SetDefaults();
 
   _value.value.type = type;
@@ -33,9 +33,9 @@ Header::operator Type() const noexcept {
 
 Header::operator Value() const noexcept { return _value.value; }
 
-bool Header::TokenLength(TokenLengthType token_length) noexcept {
-  if (token_length <= _kTokenLengthMax) {
-    _value.value.token_length = token_length & _kTokenLengthBitMask;
+bool Header::TokenLength(coap::Token::Length token_length) noexcept {
+  if (token_length <= _kMaximumTokenLength) {
+    _value.value.token_length = token_length;
     return true;
   }
 
@@ -47,7 +47,7 @@ bool Header::VersionIsValid() const noexcept {
 }
 
 bool Header::ContainsFormatError() const noexcept {
-  return _value.value.token_length > _kTokenLengthMax;
+  return _value.value.token_length > _kMaximumTokenLength;
 }
 
 bool Header::IsValid() const noexcept {

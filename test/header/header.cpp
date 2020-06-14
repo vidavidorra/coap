@@ -65,10 +65,10 @@ TEST_CASE(kTestGroup + "operator Value() returns correctly", kTags) {
 TEST_CASE(kTestGroup + "TokenLength() correctly sets the token length", kTags) {
   Header header(Type::Value::kConfirmable, Code::Value::k000, 0x55aa);
 
-  for (Header::TokenLengthType type = 0; type <= header.kMaximumTokenLength;
-       type++) {
-    REQUIRE(header.TokenLength(type) == true);
-    REQUIRE(static_cast<Header::Value>(header).token_length == type);
+  for (coap::Token::Length length = 0; length <= coap::Token::kMaximumLength;
+       length++) {
+    REQUIRE(header.TokenLength(length) == true);
+    REQUIRE(static_cast<Header::Value>(header).token_length == length);
   }
 }
 
@@ -76,8 +76,8 @@ TEST_CASE(kTestGroup + "TokenLength() ignores values larger than its maximum",
           kTags) {
   Header header(Type::Value::kConfirmable, Code::Value::k000, 0x5555);
 
-  for (auto type = header.kMaximumTokenLength + 1;
-       type <= std::numeric_limits<Header::TokenLengthType>::max(); type++) {
+  for (auto type = coap::Token::kMaximumLength + 1;
+       type <= std::numeric_limits<coap::Token::Length>::max(); type++) {
     REQUIRE(header.TokenLength(type) == false);
     REQUIRE(static_cast<Header::Value>(header).token_length == 0);
   }
