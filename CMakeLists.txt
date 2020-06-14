@@ -78,6 +78,8 @@ else()
     coap.hpp
     code.hpp
     header.hpp
+    section.hpp
+    token.hpp
     type.hpp
   )
 
@@ -85,6 +87,7 @@ else()
     coap.cpp
     code.cpp
     header.cpp
+    token.cpp
     type.cpp
   )
 
@@ -112,6 +115,10 @@ else()
     header/header.cpp
     header/test-data.hpp
     coap.cpp
+    token/test-data.hpp
+    token/token.cpp
+
+    # Runner
     runner.cpp
   )
 
