@@ -3,6 +3,7 @@
 #include <cstdint>
 
 #include "header.hpp"
+#include "token.hpp"
 
 namespace coap {
 
@@ -27,7 +28,7 @@ class Coap {
 
   Coap(std::uint8_t data, Header header);
 
-  Coap& token();
+  Coap& token(Token value);
   Coap& option();
   Coap& payload();
 };
