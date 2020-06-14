@@ -14,36 +14,32 @@ namespace coap {
  */
 class Token {
  public:
-  using Size = std::uint8_t;
-
-  enum class Length : Size {
-    kMinimum = 0,  // Zero length is effectively the same as no token.
-    kMaximum = 8,
+  enum {
+    kMinimumLength = 0,  // Zero length is effectively the same as no token.
+    kMaximumLength = 8,
   };
 
+  using Length = std::uint8_t;
+
   using Data =
-      std::array<coap::Element, static_cast<std::size_t>(Length::kMaximum)>;
+      std::array<coap::Element, static_cast<std::size_t>(kMaximumLength)>;
 
   struct Value {
-    std::array<coap::Element, static_cast<std::size_t>(Length::kMaximum)> data;
-    Size size;
+    std::array<coap::Element, static_cast<std::size_t>(kMaximumLength)> data;
+    Length length;
 
     bool operator==(Value const& other) const;
   };
 
-  using VectorValue = std::vector<coap::Element>;
+  using Vector = std::vector<coap::Element>;
 
   Token(Value value) noexcept;
 
-  Token(VectorValue value) noexcept;
+  Token(Vector value) noexcept;
 
-  Size length() const noexcept { return _value.size; }
+  operator Value() const noexcept;
 
-  operator Value() const noexcept { return _value; }
-
-  operator VectorValue() const noexcept {
-    return {_value.data.begin(), _value.data.begin() + _value.size};
-  }
+  operator Vector() const noexcept;
 
  private:
   Value _value;

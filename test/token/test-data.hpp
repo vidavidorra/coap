@@ -7,7 +7,7 @@ namespace coap::test {
 using TestValue = struct {
   struct {
     coap::Token::Value value;
-    coap::Token::VectorValue vector_value;
+    coap::Token::Vector vector_value;
   } token;
 };
 
@@ -20,7 +20,7 @@ std::vector<TestValue> const
                         .value =
                             {
                                 .data = {},
-                                .size = 0,
+                                .length = 0,
                             },
                         .vector_value = {},
                     },
@@ -31,7 +31,7 @@ std::vector<TestValue> const
                         .value =
                             {
                                 .data = {0x55},
-                                .size = 1,
+                                .length = 1,
                             },
                         .vector_value = {0x55},
                     },
@@ -42,7 +42,7 @@ std::vector<TestValue> const
                         .value =
                             {
                                 .data = {0x55, 0x55},
-                                .size = 2,
+                                .length = 2,
                             },
                         .vector_value = {0x55, 0x55},
                     },
@@ -53,7 +53,7 @@ std::vector<TestValue> const
                         .value =
                             {
                                 .data = {0x55, 0x55, 0x55},
-                                .size = 3,
+                                .length = 3,
                             },
                         .vector_value = {0x55, 0x55, 0x55},
                     },
@@ -64,7 +64,7 @@ std::vector<TestValue> const
                         .value =
                             {
                                 .data = {0x55, 0x55, 0x55, 0x55},
-                                .size = 4,
+                                .length = 4,
                             },
                         .vector_value = {0x55, 0x55, 0x55, 0x55},
                     },
@@ -75,7 +75,7 @@ std::vector<TestValue> const
                         .value =
                             {
                                 .data = {0x55, 0x55, 0x55, 0x55, 0x55},
-                                .size = 5,
+                                .length = 5,
                             },
                         .vector_value = {0x55, 0x55, 0x55, 0x55, 0x55},
                     },
@@ -86,7 +86,7 @@ std::vector<TestValue> const
                         .value =
                             {
                                 .data = {0x55, 0x55, 0x55, 0x55, 0x55, 0x55},
-                                .size = 6,
+                                .length = 6,
                             },
                         .vector_value = {0x55, 0x55, 0x55, 0x55, 0x55, 0x55},
                     },
@@ -98,7 +98,7 @@ std::vector<TestValue> const
                             {
                                 .data = {0x55, 0x55,
                                          0x55, 0x55, 0x55, 0x55, 0x55},
-                                .size = 7,
+                                .length = 7,
                             },
                         .vector_value = {0x55, 0x55, 0x55, 0x55, 0x55, 0x55,
                                          0x55},
@@ -111,7 +111,7 @@ std::vector<TestValue> const
                             {
                                 .data = {0x55, 0x55,
                                          0x55, 0x55, 0x55, 0x55, 0x55, 0x55},
-                                .size = 8,
+                                .length = 8,
                             },
                         .vector_value = {0x55, 0x55, 0x55, 0x55, 0x55, 0x55,
                                          0x55, 0x55},

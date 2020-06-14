@@ -24,7 +24,7 @@ TEST_CASE(kTestGroup + "correctly constructs token", kTags) {
     }
   }
 
-  SECTION("from VectorValue") {
+  SECTION("from Vector") {
     for (auto const& e : kTestValues) {
       const Token kToken(e.token.vector_value);
 
@@ -41,32 +41,28 @@ TEST_CASE(kTestGroup + "operator Value() returns correctly", kTags) {
   }
 }
 
-TEST_CASE(kTestGroup + "operator VectorValue() returns correctly", kTags) {
+TEST_CASE(kTestGroup + "operator Vector() returns correctly", kTags) {
   for (auto const& e : kTestValues) {
     const Token kToken(e.token.vector_value);
 
-    REQUIRE(static_cast<Token::VectorValue>(kToken) == e.token.vector_value);
+    REQUIRE(static_cast<Token::Vector>(kToken) == e.token.vector_value);
   }
 }
 
 TEST_CASE(kTestGroup +
-              "VectorValue constructor ignores lengths larger than the maximum",
+              "Vector constructor ignores lengths larger than the maximum",
           kTags) {
-  Token::VectorValue const kValue(std::numeric_limits<Token::Size>::max(),
-                                  0xaa);
+  Token::Vector const kValue(std::numeric_limits<Token::Length>::max(), 0xaa);
   Token::Data expected_token;
-  std::copy(kValue.begin(),
-            kValue.begin() + static_cast<Token::Size>(Token::Length::kMaximum),
+  std::copy(kValue.begin(), kValue.begin() + Token::kMaximumLength,
             expected_token.begin());
 
-  for (Token::Size length =
-           static_cast<Token::Size>(Token::Length::kMaximum) + 1;
-       length < kValue.size(); length++) {
-    Token::VectorValue const kSubset(kValue.begin(), kValue.begin() + length);
+  for (Token::Length length = Token::kMaximumLength + 1; length < kValue.size();
+       length++) {
+    Token::Vector const kSubset(kValue.begin(), kValue.begin() + length);
     Token const kToken(kSubset);
 
-    REQUIRE(static_cast<Token::Value>(kToken).size ==
-            static_cast<Token::Size>(Token::Length::kMaximum));
+    REQUIRE(static_cast<Token::Value>(kToken).length == Token::kMaximumLength);
     REQUIRE(static_cast<Token::Value>(kToken).data == expected_token);
   }
 }
